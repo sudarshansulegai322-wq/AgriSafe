@@ -16,6 +16,7 @@ import {
 import { Product, Language } from '../types';
 import { translations } from '../data/translations';
 import { speechService } from '../services/speechService';
+import { getProductImage, handleProductImageError } from '../services/productImageService';
 
 interface ProductDetailModalProps {
   product: Product;
@@ -78,10 +79,8 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           <div className="md:col-span-5 bg-slate-100 p-6 flex flex-col justify-between border-b md:border-b-0 md:border-r border-slate-200">
             <div className="relative rounded-xl overflow-hidden bg-white border border-slate-200 shadow-xs mb-4">
               <img
-                src={product.image}
-                onError={(e) => {
-                  e.currentTarget.src = '/images/agrisafe_logo.jpeg';
-                }}
+                src={getProductImage(product.image, product.category, product.title)}
+                onError={(e) => handleProductImageError(e, product.category, product.title)}
                 alt={product.title}
                 className="w-full h-72 object-cover object-center"
                 referrerPolicy="no-referrer"

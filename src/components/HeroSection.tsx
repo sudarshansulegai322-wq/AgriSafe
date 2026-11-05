@@ -93,7 +93,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               <img
                 src="/images/hero_agrisafe_banner_1793873618161.jpg"
                 onError={(e) => {
-                  e.currentTarget.src = '/images/agrisafe_logo.jpeg';
+                  e.currentTarget.src = '/images/product_crop_shield_1793873618659.jpg';
                 }}
                 alt="Indian Agronomist inspecting certified crop field with digital verification station"
                 className="w-full h-80 lg:h-96 object-cover object-center group-hover:scale-102 transition-transform duration-700"

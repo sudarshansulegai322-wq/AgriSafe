@@ -19,6 +19,7 @@ import { Product, Language } from '../types';
 import { PRODUCTS } from '../data/mockData';
 import { translations } from '../data/translations';
 import { speechService } from '../services/speechService';
+import { getProductImage, handleProductImageError } from '../services/productImageService';
 
 interface MarketplaceCatalogProps {
   language: Language;
@@ -297,13 +298,12 @@ export const MarketplaceCatalog: React.FC<MarketplaceCatalogProps> = ({
               {/* Lead Image Slot */}
               <div className="relative h-56 bg-slate-100 overflow-hidden">
                 <img
-                  src={product.image}
-                  onError={(e) => {
-                    e.currentTarget.src = '/images/agrisafe_logo.jpeg';
-                  }}
+                  src={getProductImage(product.image, product.category, product.title)}
+                  onError={(e) => handleProductImageError(e, product.category, product.title)}
                   alt={product.title}
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                   referrerPolicy="no-referrer"
+                  loading="lazy"
                 />
 
                 {/* Subsidized Badge */}
